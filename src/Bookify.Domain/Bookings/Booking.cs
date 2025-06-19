@@ -8,17 +8,17 @@ namespace Bookify.Domain.Bookings
     public sealed class Booking : Entity
     {
         private Booking(
-        Guid id,
-        Guid apartmentId,
-        Guid userId,
-        DateRange duration,
-        Money priceForPeriod,
-        Money cleaningFee,
-        Money amenitiesUpCharge,
-        Money totalPrice,
-        BookingStatus status,
-        DateTime createdOnUtc)
-        : base(id)
+            Guid id,
+            Guid apartmentId,
+            Guid userId,
+            DateRange duration,
+            Money priceForPeriod,
+            Money cleaningFee,
+            Money amenitiesUpCharge,
+            Money totalPrice,
+            BookingStatus status,
+            DateTime createdOnUtc)
+            : base(id)
         {
             ApartmentId = apartmentId;
             UserId = userId;
@@ -29,6 +29,16 @@ namespace Bookify.Domain.Bookings
             TotalPrice = totalPrice;
             Status = status;
             CreatedOnUtc = createdOnUtc;
+        }
+
+        private Booking()
+        {
+            // Initialize non-nullable properties with default values
+            Duration = default!;
+            PriceForPeriod = default!;
+            CleaningFee = default!;
+            AmenitiesUpCharge = default!;
+            TotalPrice = default!;
         }
 
         public Guid ApartmentId { get; private set; }

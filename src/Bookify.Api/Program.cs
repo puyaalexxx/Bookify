@@ -1,3 +1,4 @@
+using Bookify.Api.Extensions;
 using Bookify.Application;
 using Bookify.Infrastructure;
 
@@ -33,11 +34,18 @@ if (app.Environment.IsDevelopment())
         //c.SwaggerEndpoint("/swagger/v2/swagger.json", "CompanyEmployees API V2");
         c.RoutePrefix = string.Empty; // Set Swagger UI at the app's root
     });
+
+    app.ApplyMigrations();
+
+    app.SeedData();
 }
 
 app.UseHttpsRedirection();
 
-//app.UseAuthorization();
+app.UseCustomExceptionHandler();
+
+app.UseAuthentication();
+app.UseAuthorization();
 
 app.MapControllers();
 

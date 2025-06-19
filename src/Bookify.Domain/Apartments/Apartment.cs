@@ -19,6 +19,16 @@ namespace Bookify.Domain.Apartments
             Amenities = amenities;
         }
 
+        // Marking properties as required to ensure they are initialized
+        private Apartment()
+        {
+            Name = default!;
+            Description = default!;
+            Address = default!;
+            Price = default!;
+            CleaningFee = default!;
+        }
+
         public Name Name { get; private set; }
 
         public Description Description { get; private set; }
