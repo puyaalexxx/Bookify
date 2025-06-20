@@ -1,40 +1,32 @@
-﻿namespace Bookify.Domain.Abstractions
+﻿namespace Bookify.Domain.Abstractions;
+
+public abstract class Entity
 {
-    public abstract class Entity
+    private readonly List<IDomainEvent> _domainEvents = new();
+
+    protected Entity(Guid id)
     {
-        //init - once defined, it is set for life and cannot be changed
-        public Guid Id { get; init; }
+        Id = id;
+    }
 
-        private readonly List<IDomainEvent> _domainEvents = new();
+    protected Entity()
+    {
+    }
 
-        protected Entity(Guid id)
-        {
-            Id = id;
-        }
+    public Guid Id { get; init; }
 
-        protected Entity()
-        {
-        }
+    public IReadOnlyList<IDomainEvent> GetDomainEvents()
+    {
+        return _domainEvents.ToList();
+    }
 
-        public IReadOnlyList<IDomainEvent> GetDomainEvents()
-        {
-            return _domainEvents.ToList();
-        }
+    public void ClearDomainEvents()
+    {
+        _domainEvents.Clear();
+    }
 
-        public void ClearDomainEvents()
-        {
-            _domainEvents.Clear();
-        }
-
-        protected void RaiseDomainEvent(IDomainEvent domainEvent)
-        {
-            if (domainEvent == null)
-            {
-                throw new ArgumentNullException(nameof(domainEvent), "Domain event cannot be null.");
-            }
-
-            _domainEvents.Add(domainEvent);
-        }
-
+    protected void RaiseDomainEvent(IDomainEvent domainEvent)
+    {
+        _domainEvents.Add(domainEvent);
     }
 }

@@ -24,8 +24,15 @@ public sealed class Review : Entity
         CreatedOnUtc = createdOnUtc;
     }
 
+    // Initialize non-nullable properties with default values to satisfy the compiler
     private Review()
     {
+        ApartmentId = Guid.Empty;
+        BookingId = Guid.Empty;
+        UserId = Guid.Empty;
+        Rating = default!;
+        Comment = default!;
+        CreatedOnUtc = default;
     }
 
     public Guid ApartmentId { get; private set; }
@@ -34,13 +41,17 @@ public sealed class Review : Entity
 
     public Guid UserId { get; private set; }
 
-    public Rating? Rating { get; private set; }
+    public Rating Rating { get; private set; }
 
-    public Comment? Comment { get; private set; }
+    public Comment Comment { get; private set; }
 
     public DateTime CreatedOnUtc { get; private set; }
 
-    public static Result<Review> Create(Booking booking, Rating rating, Comment comment, DateTime createdOnUtc)
+    public static Result<Review> Create(
+        Booking booking,
+        Rating rating,
+        Comment comment,
+        DateTime createdOnUtc)
     {
         if (booking.Status != BookingStatus.Completed)
         {

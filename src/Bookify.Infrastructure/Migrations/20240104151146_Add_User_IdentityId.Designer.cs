@@ -12,15 +12,15 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Bookify.Infrastructure.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20250619124858_Add_User_IdentityID")]
-    partial class Add_User_IdentityID
+    [Migration("20240104151146_Add_User_IdentityId")]
+    partial class Add_User_IdentityId
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "9.0.6")
+                .HasAnnotation("ProductVersion", "8.0.0")
                 .HasAnnotation("Relational:MaxIdentifierLength", 63);
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
@@ -32,7 +32,7 @@ namespace Bookify.Infrastructure.Migrations
                         .HasColumnType("uuid")
                         .HasColumnName("id");
 
-                    b.PrimitiveCollection<int[]>("Amenities")
+                    b.Property<int[]>("Amenities")
                         .IsRequired()
                         .HasColumnType("integer[]")
                         .HasColumnName("amenities");
@@ -132,6 +132,7 @@ namespace Bookify.Infrastructure.Migrations
                         .HasColumnName("booking_id");
 
                     b.Property<string>("Comment")
+                        .IsRequired()
                         .HasMaxLength(200)
                         .HasColumnType("character varying(200)")
                         .HasColumnName("comment");
@@ -140,7 +141,7 @@ namespace Bookify.Infrastructure.Migrations
                         .HasColumnType("timestamp with time zone")
                         .HasColumnName("created_on_utc");
 
-                    b.Property<int?>("Rating")
+                    b.Property<int>("Rating")
                         .HasColumnType("integer")
                         .HasColumnName("rating");
 

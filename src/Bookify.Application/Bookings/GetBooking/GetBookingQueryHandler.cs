@@ -55,7 +55,6 @@ internal sealed class GetBookingQueryHandler : IQueryHandler<GetBookingQuery, Bo
             return Result.Failure<BookingResponse>(BookingErrors.NotFound);
         }
 
-
         return booking;
     }
 }

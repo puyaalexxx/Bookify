@@ -1,12 +1,6 @@
-﻿namespace Bookify.Domain.Apartments
-{
-    public interface IApartmentRepository
-    {
-        Task<Apartment?> GetByIdAsync(Guid id, CancellationToken cancellationToken = default);
+﻿namespace Bookify.Domain.Apartments;
 
-        /*Task<IEnumerable<Apartment>> GetAllAsync(CancellationToken cancellationToken = default);
-        void Add(Apartment apartment);
-        void Update(Apartment apartment);
-        void Delete(Apartment apartment);*/
-    }
+public interface IApartmentRepository
+{
+    Task<Apartment?> GetByIdAsync(Guid id, CancellationToken cancellationToken = default);
 }
