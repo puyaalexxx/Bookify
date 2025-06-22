@@ -1,4 +1,4 @@
-﻿/*using System.Data;
+﻿using System.Data;
 using Bookify.Application.Abstractions.Clock;
 using Bookify.Application.Abstractions.Data;
 using Bookify.Domain.Abstractions;
@@ -121,4 +121,3 @@ internal sealed class ProcessOutboxMessagesJob : IJob
 
     internal sealed record OutboxMessageResponse(Guid Id, string Content);
 }
-*/

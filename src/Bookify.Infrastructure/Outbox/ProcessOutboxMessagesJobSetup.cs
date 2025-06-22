@@ -1,4 +1,4 @@
-﻿/*using Microsoft.Extensions.Options;
+﻿using Microsoft.Extensions.Options;
 using Quartz;
 
 namespace Bookify.Infrastructure.Outbox;
@@ -24,4 +24,4 @@ public class ProcessOutboxMessagesJobSetup : IConfigureOptions<QuartzOptions>
                     .WithSimpleSchedule(schedule =>
                         schedule.WithIntervalInSeconds(_outboxOptions.IntervalInSeconds).RepeatForever()));
     }
-}*/
+}
